@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  client:
+    build: ./client
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+  server:
+    build: ./server
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./server:/app
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: postgres
+      POSTGRES_DB: crudapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/data:/var/lib/postgresql/data

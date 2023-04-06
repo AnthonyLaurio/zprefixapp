@@ -7,7 +7,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.CONNECTION_STRING
+    connection: 'postgres://postgres:docker@db/crudapp'
   },
 
   staging: {
