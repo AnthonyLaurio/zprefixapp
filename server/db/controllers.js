@@ -30,4 +30,9 @@ deleteItem = async(id) => {
   return item;
 }
 
-module.exports = { getItems, getUser, addUser, getPersonalItems, addItem, deleteItem }
+updateItem = async(item) => {
+  const updatedItem = await knex('items').where('id', item.id).update(item);
+  return updatedItem;
+}
+
+module.exports = { getItems, getUser, addUser, getPersonalItems, addItem, deleteItem, updateItem }

@@ -11,7 +11,6 @@ const getPersonalItems = async (req, res) => {
 }
 
 const addItem = async (req, res) => {
-  console.log(req.body);
   const item = await db.addItem(req.body);
   if(item){
     res.status(200).send({message: 'Item added', error: false});
@@ -29,4 +28,14 @@ const deleteItem = async (req, res) => {
   }
 }
 
-module.exports = { addItem, getItems, getPersonalItems, deleteItem };
+const updateItem = async (req, res) => {
+  console.log(req.body);
+  const item = await db.updateItem(req.body);
+  if(item){
+    res.status(200).send({message: 'Item updated', error: false});
+  }else{
+    res.status(200).send({message: 'Item not updated', error: true});
+  }
+}
+
+module.exports = { addItem, getItems, getPersonalItems, deleteItem, updateItem };

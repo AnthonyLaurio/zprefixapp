@@ -28,6 +28,10 @@ app.delete('/items/:id', async (req, res) => {
   item.deleteItem(req, res);
 })
 
+app.patch('/items', async (req, res) => {
+  item.updateItem(req, res);
+})
+
 
 app.post('/items', async (req, res) => {
   item.addItem(req, res);
