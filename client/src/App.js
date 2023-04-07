@@ -8,7 +8,7 @@ export const myContext = createContext();
 
 function App() { 
   const [loggedIn, setLoggedIn] = useState({userId: null, auth: false});
-  const [url] = useState('http://localhost:3001');//Change to express url
+  const [url] = useState('https://anthonylserver.onrender.com');//Change to express url
 
   useEffect(() => {
     fetch(`${url}/checkAuth`)
