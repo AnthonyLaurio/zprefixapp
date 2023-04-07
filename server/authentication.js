@@ -9,7 +9,7 @@ const login = async (req, res) => {
     res.status(200).send({message: 'Incorrect password', error: true});
   }else{
     res.cookie('auth', user[0].id, {maxage: 900000});
-    res.status(200).send({message: 'Login successful', error: false});
+    res.status(200).send({userId: user[0].id, auth: true});
   }
 }
 
@@ -25,8 +25,15 @@ const register = async (req, res) => {
 
 const logout = async (req, res) => {
   res.clearCookie('auth');
-  res.status(200).send({message: 'Logout successful', error: false});
+  res.status(200).send({userId: null, auth: false});
 }
 
+const checkAuth = async (req, res) => {
+  if(req.cookies.auth !== undefined){
+    res.status(200).send({userId: req.cookies.auth, auth: true});
+  }else{
+    res.status(200).send({userId: null, auth: false});
+  }
+}
 
-module.exports = { login, register, logout };
+module.exports = { login, register, logout, checkAuth };

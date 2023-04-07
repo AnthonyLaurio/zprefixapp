@@ -2,8 +2,7 @@
 1. Ensure you have Docker installed and running
 2. In the zprefixapp directory, run `docker-compose up`
 3. Navigate to localhost:3000 in your browser
-4. View inventory on the homepage or create an account to create a personal inventory
-5. To stop the server, run `docker-compose down`
+4. To stop the server, run `docker-compose down`
 
 **How to Use
 1. As a visitor, you can view all of inventory on the homepage

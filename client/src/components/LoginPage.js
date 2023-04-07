@@ -12,11 +12,11 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState({ message: '', error: false })
-  const { setCookies } = useContext(myContext);
+  const { loggedIn, setLoggedIn, url } = useContext(myContext);
   const newAccount = useRef({})
 
   const handleLogin = () => {
-    fetch('http://localhost:3001/login', {
+    fetch(`${url}/login`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -30,14 +30,14 @@ const LoginPage = () => {
         if (data.error === true) {
           setAlert(data);
         } else {
-          setCookies(cookie.parse(document.cookie));
+          setLoggedIn(data)
           navigate('/personal');
         }
       });
   }
 
   const handleRegister = () => {
-    fetch('http://localhost:3001/register', {
+    fetch(`${url}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const LoginPage = () => {
   } else if (display === 'register') {
     return (
       <div className='vw-100 h-75 d-flex justify-content-center align-items-center'>
-        <form className='mt-3 py-4  bg-dark text-light login-form d-flex justify-content-center align-items-center flex-column'>
+        <form className='mt-3 py-4  bg-dark text-light login-form d-flex justify-content-center align-items-center flex-column' onSubmit={handleSubmit}>
           <h3>Register</h3>
           <p>Already registered? Login <span className='text-primary hover-effect' onClick={() => setDisplay('login')}>here</span></p>
           <div className='form-group w-75'>

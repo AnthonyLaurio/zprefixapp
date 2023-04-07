@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import ItemTable from './ItemTable';
+import { myContext } from '../App';
 
 const HomePage = () => {
   const [items, setItems] = React.useState([]);
+  const { url } = React.useContext(myContext);
 
   useEffect(() => {
-    fetch('http://localhost:3001/items')
+    fetch(`${url}/items`)
       .then(res => res.json())
       .then(data => {
         setItems(data);
@@ -13,7 +15,6 @@ const HomePage = () => {
   }, [])
   return (
     <div>
-      <h3>Inventory:</h3>
       {items ? <ItemTable items={items} /> : <div>Loading...</div>}
     </div>
   )

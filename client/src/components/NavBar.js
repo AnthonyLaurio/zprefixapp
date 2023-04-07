@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import '../stylesheets/NavBar.css'
 import { myContext } from '../App'
-import cookie from 'cookie'
 
 const NavBar = () => {
   const navigate = useNavigate()
-  const { cookies , setCookies} = useContext(myContext);
+  const { loggedIn, setLoggedIn, url} = useContext(myContext);
 
   const handleLogout = () => {
-    fetch('http://localhost:3001/logout', {
+    fetch(`${url}/logout`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -22,8 +21,7 @@ const NavBar = () => {
         if (data.error === true) {
           console.log(data);
         } else {
-          console.log(data);
-          setCookies(cookie.parse(document.cookie));
+          setLoggedIn(data)
           navigate('/');
         }
       });
@@ -32,10 +30,10 @@ const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark" className='navbar-main'>
       <Container>
-        <Navbar.Brand onClick={() => navigate('/')}>MacroCenter</Navbar.Brand>
+        <Navbar.Brand onClick={() => navigate('/')}>Inventory Center</Navbar.Brand>
         <Nav className="d-flex justify-content-end">
-          {cookies.auth ? <Nav.Link onClick={() => handleLogout()}>Logout</Nav.Link> : <Nav.Link onClick={() => navigate('/login')}>Login</Nav.Link>}
-          {cookies.auth ? <Nav.Link onClick={() => navigate('/personal')}>Personal Inventory</Nav.Link> : null}
+          {loggedIn.auth ? <Nav.Link onClick={() => handleLogout()}>Logout</Nav.Link> : <Nav.Link onClick={() => navigate('/login')}>Login</Nav.Link>}
+          {loggedIn.auth ? <Nav.Link onClick={() => navigate('/personal')}>Personal Inventory</Nav.Link> : null}
         </Nav>
       </Container>
     </Navbar>

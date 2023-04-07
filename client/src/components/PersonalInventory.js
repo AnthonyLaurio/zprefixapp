@@ -4,14 +4,14 @@ import { myContext } from '../App'
 
 const PersonalInventory = () => {
   const [items, setItems] = useState([]);
-  const { cookies } = useContext(myContext);
+  const { loggedIn , url} = useContext(myContext);
   
   useEffect(() => {
     getItems();
   }, [])
 
   const getItems = () => {
-    fetch(`http://localhost:3001/items/${cookies.auth}`)
+    fetch(`${url}/items/${loggedIn.userId}`)
       .then(res => res.json())
       .then(data => {
         setItems(data);
@@ -21,7 +21,7 @@ const PersonalInventory = () => {
 
   return (
     <div>
-      <ItemTable items={items} userId={cookies.auth} getItems={getItems}/>
+      <ItemTable items={items} userId={loggedIn.userId} getItems={getItems}/>
     </div>
   )
 }
