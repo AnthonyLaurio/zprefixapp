@@ -4,7 +4,6 @@ import { useState, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DismissableAlert } from './DismissableAlert'
 import { myContext } from '../App'
-import cookie from 'cookie'
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState({ message: '', error: false })
-  const { loggedIn, setLoggedIn, url } = useContext(myContext);
+  const { setLoggedIn, url } = useContext(myContext);
   const newAccount = useRef({})
 
   const handleLogin = () => {
