@@ -2,11 +2,13 @@ const db = require('./db/controllers');
 
 const getItems = async (req, res) => {
   const items = await db.getItems();
+  console.log(`Got items`);
   res.send(items);
 }
 
 const getPersonalItems = async (req, res) => {
   const items = await db.getPersonalItems(req.params.id);
+  console.log(`Got personal items for user: ${req.params.id}`);
   res.send(items);
 }
 
@@ -29,7 +31,6 @@ const deleteItem = async (req, res) => {
 }
 
 const updateItem = async (req, res) => {
-  console.log(req.body);
   const item = await db.updateItem(req.body);
   if(item){
     res.status(200).send({message: 'Item updated', error: false});

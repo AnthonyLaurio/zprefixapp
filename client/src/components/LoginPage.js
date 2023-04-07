@@ -55,6 +55,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    e.target.reset();
   }
   if (display === 'login') {
     return (

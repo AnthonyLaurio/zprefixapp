@@ -21,17 +21,17 @@ addUser = async(user) => {
 }
 
 addItem = async(item) => {
-  const newItem = await knex('items').insert(item);
+  const newItem = await knex('items').insert(item, ['name']);
   return newItem;
 }
 
 deleteItem = async(id) => {
-  const item = await knex('items').where('id', id).del();
+  const item = await knex('items').where('id', id).del(['name']);
   return item;
 }
 
 updateItem = async(item) => {
-  const updatedItem = await knex('items').where('id', item.id).update(item);
+  const updatedItem = await knex('items').where('id', item.id).update(item, ['name']);
   return updatedItem;
 }
 

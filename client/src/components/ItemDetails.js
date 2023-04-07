@@ -25,12 +25,14 @@ const ItemDetails = ({ item, setDetails, userId, handleDelete, getItems}) => {
       })
   }
 
-
+  //Updates details form after an edit has been made
   const setupEdit = () => {
     editedItem.current = {id: item.id, userId: userId, name: item.name, description: item.description, quantity: item.quantity };
     setEdit(true);
   }
+  //If user is logged in, allow them to edit and delete items
   if (item.userId === userId) {
+    //If user is not editing, display the item details
     if (!edit) {
       return (
         <div className='details-box bg-dark text-light d-flex flex-column align-items-center'>
@@ -45,6 +47,7 @@ const ItemDetails = ({ item, setDetails, userId, handleDelete, getItems}) => {
           </div>
         </div>
       )
+    //If user is editing, display the item editing forms
     } else {
       return (
       <div className='details-box bg-dark text-light d-flex flex-column align-items-center'>
@@ -61,7 +64,7 @@ const ItemDetails = ({ item, setDetails, userId, handleDelete, getItems}) => {
       </div>
       )
     }
-
+    //If user is not logged in just show the details
   } else {
     return (
       <div className='details-box bg-dark text-light d-flex flex-column align-items-center'>

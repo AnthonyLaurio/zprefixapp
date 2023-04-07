@@ -7,8 +7,9 @@ const PersonalInventory = () => {
   const { loggedIn , url} = useContext(myContext);
   
   useEffect(() => {
-    getItems();
-  }, [])
+    if(loggedIn.userId !== null)
+      getItems();
+  }, [loggedIn])
 
   const getItems = () => {
     fetch(`${url}/items/${loggedIn.userId}`)

@@ -8,10 +8,15 @@ export const myContext = createContext();
 
 function App() { 
   const [loggedIn, setLoggedIn] = useState({userId: null, auth: false});
-  const [url] = useState('https://anthonylserver.onrender.com');//Change to 'http://localhost:3001' for local testing
+  //Sets the url for all fetches in the application
+  const [url] = useState(`${process.env.REACT_APP_API_URL}`);
 
+  //Sends a request to the server to check if the user auth cookies are still valid and logins in the user if so
   useEffect(() => {
-    fetch(`${url}/checkAuth`)
+    fetch(`${url}/checkAuth`, {
+      method: 'GET',
+      credentials: 'include'
+    })
       .then(res => res.json())
       .then(data => {
         setLoggedIn(data);

@@ -1,1 +1,1 @@
-CONNECTION_STRING='postgres://USER:PASSWORD@db/crudapp'
+CONNECTION_STRING='postgres://postgres:docker@db/crudapp'

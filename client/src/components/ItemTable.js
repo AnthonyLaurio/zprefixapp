@@ -38,7 +38,7 @@ const ItemTable = ({ items, userId, getItems }) => {
         getItems();
       })
   }
-
+  //If user is not logged in, display only the item table
   if (!userId) {
     return (
       <>
@@ -66,6 +66,7 @@ const ItemTable = ({ items, userId, getItems }) => {
       </>
     )
   }
+  //If user is logged in, display only the users items and allow adding, deleting, and editing items
   else {
     return (
       <>
@@ -89,11 +90,11 @@ const ItemTable = ({ items, userId, getItems }) => {
             <td><button type='button' className='btn btn-success' onClick={() => handleAdd()}>Add</button></td>
           </tr>
           {items.map((item, index) => (
-            <tr key={index} onClick={(e) => {setDetails(item)}}>
-              <td className='text-center'>{item.id}</td>
-              <td>{item.name}</td>
-              <td className='text-center'>{item.quantity}</td>
-              <td className='text-nowrap'>{item.description.length >= 100 ? `${item.description.slice(0, 97)}...` : item.description}</td>
+            <tr key={index} >
+              <td className='text-center' onClick={() => {setDetails(item)}}>{item.id}</td>
+              <td onClick={() => {setDetails(item)}}>{item.name}</td>
+              <td className='text-center' onClick={() => {setDetails(item)}}>{item.quantity}</td>
+              <td className='text-nowrap' onClick={() => {setDetails(item)}}>{item.description.length >= 100 ? `${item.description.slice(0, 97)}...` : item.description}</td>
               <td className='d-flex justify-content-evenly'>
                 <button type='button' className='btn btn-danger' onClick={() => { handleDelete(item.id) }}>Delete</button>
               </td>
