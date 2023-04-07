@@ -1,4 +1,8 @@
-**How to Start
+Visit the deployed site at https://anthonylcrudapp.onrender.com/
+
+**How to Start Locally
+1. In the server folder, rename the file '.envcopy' to '.env'
+2. In the client folder, inside app.js change the URL on line 11 to `http://localhost:3001`. Currently it will use the deployed database if you don't change it.
 1. Ensure you have Docker installed and running
 2. In the zprefixapp directory, run `docker-compose up`
 3. Navigate to localhost:3000 in your browser
