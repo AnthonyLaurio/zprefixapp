@@ -8,7 +8,7 @@ const login = async (req, res) => {
     res.status(200).send({message: 'Incorrect password', error: true});
   }else{
     console.log(`Logged in: ${user[0].username}`);
-    res.cookie('auth', user[0].id, {maxage: 900000, secure: true, sameSite: 'none'});
+    res.cookie('auth', user[0].id, {maxage: 900000, sameSite: 'none', secure: true});
     res.status(200).send({userId: user[0].id, auth: true});
   }
 }
@@ -26,7 +26,7 @@ const register = async (req, res) => {
 
 const logout = async (req, res) => {
   console.log(`Logged out: ${req.cookies.auth}`);
-  res.clearCookie('auth', {secure: true, sameSite: 'none'});
+  res.clearCookie('auth', {sameSite: 'none', secure: true});
   res.status(200).send({userId: null, auth: false});
 }
 
