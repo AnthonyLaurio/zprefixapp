@@ -9,7 +9,7 @@ exports.up = function(knex) {
     table.foreign('userId').references('id').inTable('users')
       .onDelete('CASCADE');
     table.string('name').notNullable();
-    table.string('description').notNullable();
+    table.text('description').notNullable();
     table.integer('quantity').notNullable();
 });
 };

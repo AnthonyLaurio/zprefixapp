@@ -7,16 +7,12 @@ services:
       - server
     ports:
       - "3000:3000"
-    volumes:
-      - ./client:/app
   server:
     build: ./server
     depends_on:
       - db
     ports:
       - "3001:3001"
-    volumes:
-      - ./server:/app
   db:
     image: postgres
     environment:

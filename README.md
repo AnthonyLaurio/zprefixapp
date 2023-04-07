@@ -14,7 +14,7 @@ It should automatically spin back up when you visit the site.
 **How to Use
 1. As a visitor, you can view all of inventory on the homepage
 2. You can click on any item to view its full details
-3. Click login to either login or create a new account; You can login with `admin1` and `password` as a test account
+3. Click login to either login or create a new account; You can login with `admin` and `password` as a test account
 4. Once logged in you will be redirected to your personal inventory
 5. In the personal inventory you can only see items you have added yourself.
 6. In the personal inventory you can add, edit, or delete items.
