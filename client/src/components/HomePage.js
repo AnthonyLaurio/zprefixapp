@@ -15,7 +15,7 @@ const HomePage = () => {
   }, [])
   return (
     <div>
-      {items.length !== 0 ? <ItemTable items={items} /> : <div>Loading...Server may be booting up please wait</div>}
+      {items.length !== 0 ? <ItemTable items={items} /> : <h1 className='text-light text-center'>Loading...Server may be booting up please wait</h1>}
     </div>
   )
 }
